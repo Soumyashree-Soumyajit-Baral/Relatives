@@ -1,23 +1,41 @@
-import logo from './logo.svg';
+
 import './App.css';
+import React , { useState } from "react"
 
 function App() {
+  const [input, setInput]=useState("")
+  const [list, setList]=useState([]);
+	const handleList=(e)=>{
+    if(!input){
+
+    }else{
+      setList([...list, input]);
+     setInput("")
+    }
+		
+	}
+  const handleInput=(e)=>{
+    setInput(e.target.value)
+  }
+  
+  const rk="relativeListItem";
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Relatives</h1>
+      <div>
+		    <input type="text" placeholder='Write relatives names......' id="task" value={input} onChange={handleInput} ></input>
+		    <button id="btn" onClick={handleList}>Enter</button>
+		</div>
+    <div>
+      
+        {list.map((k,i)=>{
+          
+            return <ul key={rk+i++}><li key={rk+i}>{k}</li></ul>
+              
+          
+        })}
+      
+    </div>
     </div>
   );
 }
